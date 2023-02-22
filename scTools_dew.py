@@ -627,7 +627,7 @@ def filter_ribo(adata, filter_cells=False, upper_threshold=100, lower_threshold=
         library_id = adata.uns['library_id']
 
     # Calculate QC metric for % mitochondrial counts per cell
-    adata.var['ribo'] = adata.var_names.str.startswith(('RPS','rps','RPL','rpl'))
+    adata.var['ribo'] = adata.var_names.str.startswith(('RPS','rps','RPL','rpl','Rps','Rpl'))
     sc.pp.calculate_qc_metrics(adata, qc_vars=['ribo'], inplace=True)
     counts = adata.obs['pct_counts_ribo']
     ix = np.where((counts > lower_threshold) & (counts < upper_threshold), True, False)
